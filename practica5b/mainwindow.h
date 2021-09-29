@@ -24,20 +24,25 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
     void setup_mainwindow();
     void generar_mapa();
+    void keyPressEvent(QKeyEvent *i);
+
+    MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
+    QString movimientos[12];
     QGraphicsScene *escena;
     QMediaPlayer * music;
-
+    objetos *Bomber;
     int matriz[columnas][filas];
-    int level=1,levelant=1;
+    int level=1,levelant=1,contd=6,posx=60,posy=180,contf=3,conti=9,contp=9;
     QString ladrillos[2];
     objetos *mapa[columnas][filas], *puntaje;
     logica *l_mapa;
+    bool bandmuerte=true;
 };
 #endif // MAINWINDOW_H

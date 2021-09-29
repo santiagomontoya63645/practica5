@@ -5,9 +5,24 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    movimientos[0]= ":/sprites/Sprites/frontal.png";
+    movimientos[1]= ":/sprites/Sprites/frontpaso1.png";
+    movimientos[2]= ":/sprites/Sprites/frontpaso2.png";
+    movimientos[3]= ":/sprites/Sprites/derecha.png";
+    movimientos[4]= ":/sprites/Sprites/derechap1.png";
+    movimientos[5]= ":/sprites/Sprites/derechap2.png";
+    movimientos[6]= ":/sprites/Sprites/izquierda.png";
+    movimientos[7]= ":/sprites/Sprites/izquierdap1.png";
+    movimientos[8]= ":/sprites/Sprites/izquierdap2.png";
+    movimientos[9]= ":/sprites/Sprites/poste.png";
+    movimientos[10]= ":/sprites/Sprites/postep1.png";
+    movimientos[11]= ":/sprites/Sprites/postep2.png";
     ui->setupUi(this);
     setup_mainwindow();
     generar_mapa();
+    Bomber=new objetos(":/sprites/Sprites/frontal.png");
+    Bomber->setPos(60,180);
+    escena->addItem(Bomber);
 }
 
 void MainWindow::setup_mainwindow()
@@ -54,10 +69,59 @@ void MainWindow::generar_mapa()
     }
     escena->addItem(puntaje);
 }
+void MainWindow::keyPressEvent(QKeyEvent *i){
+    if(i->key()==Qt::Key_D){
+        if(contd==6) {contd=3;}
+        if (bandmuerte==true){Bomber->setPixmap(QPixmap(movimientos[contd]).scaled(60,60));}
+        if(matriz[int((posx+60)/pixeles)][int((posy)/pixeles)-2]==0 && float(posy)/float(pixeles)==float((posy)/pixeles) && bandmuerte==true){
+            Bomber->setPixmap(QPixmap(movimientos[contd]).scaled(60,60));
+            Bomber->setX(Bomber->x()+10);
+            contd++;
+            posx=posx+10;
+        }
+
+    }
+    else if(i->key()==Qt::Key_S){
+        if(contf==3)contf=0;
+        if (bandmuerte==true){Bomber->setPixmap(QPixmap(movimientos[contf]).scaled(60,60));}
+        if(matriz[int((posx)/pixeles)][int((posy+60)/pixeles)-2]==0 && float(posx)/float(pixeles)==float((posx)/pixeles) && bandmuerte==true){
+            Bomber->setPixmap(QPixmap(movimientos[contf]).scaled(60,60));
+            Bomber->setY(Bomber->y()+10);
+            contf++;
+            posy=posy+10;
+        }
+    }
+    else if(i->key()==Qt::Key_A){
+        if(conti==9) conti=6;
+        if (bandmuerte==true) Bomber->setPixmap(QPixmap(movimientos[conti]).scaled(60,60));
+        if(matriz[int((posx-10)/pixeles)][int((posy)/pixeles)-2]==0 && float(posy)/float(pixeles)==float((posy)/pixeles) && bandmuerte==true){
+            Bomber->setPixmap(QPixmap(movimientos[conti]).scaled(60,60));
+            Bomber->setX(Bomber->x()-10);
+            conti++;
+            posx=posx-10;
+        }
+    }
+    else if(i->key()==Qt::Key_W){
+        if(contp==12) contp=9;
+        if (bandmuerte==true) Bomber->setPixmap(QPixmap(movimientos[contp]).scaled(60,60));
+        if(matriz[int((posx)/pixeles)][int((posy-10)/pixeles)-2]==0 && float(posx)/float(pixeles)==float((posx)/pixeles) && bandmuerte==true){
+            Bomber->setPixmap(QPixmap(movimientos[contp]).scaled(60,60));
+            Bomber->setY(Bomber->y()-10);
+            contp++;
+            posy=posy-10;
+        }
+    }
+}
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete escena;
+    delete Bomber;
+    for(int x=0; x<columnas; x++) for(int y=0; y<filas; y++) delete mapa[x][y];
+    delete l_mapa;
+    delete puntaje;
+    delete music;
 }
 
