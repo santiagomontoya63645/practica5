@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
@@ -30,6 +31,7 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
+    QLCDNumber *lcdNumber;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -87,6 +89,9 @@ public:
         palette3.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
         label_4->setPalette(palette3);
         label_4->setFont(font);
+        lcdNumber = new QLCDNumber(centralWidget);
+        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setGeometry(QRect(540, 10, 121, 61));
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);

@@ -1,6 +1,23 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+void MainWindow::funcionActivacionTimer(){
+    ui->lcdNumber->display(contadorTIEMPO);
+    contadorTIEMPO--;
+    if(contadorTIEMPO==0) {
+        contadorTIEMPO=180;
+        vidas=vidas-1;
+        ui->label_4->setNum(vidas);
+        bandmuerte=false;
+        if(bandmuerte==false){
+             time=new QTimer;
+             time->start(250);
+             //vidas=vidas-1;
+             //ui->label_4->setNum(vidas);
+             connect(time,SIGNAL(timeout()),this,SLOT(morir()));
 
+        }
+    }
+}
 void MainWindow::mover()
 {
     if(((posx)/pixeles==pose1x && (posy/pixeles)-2==pose1y) || ((posx)/pixeles==pose2x && (posy/pixeles)-2==pose2y) || ((posx)/pixeles==pose3x && (posy/pixeles)-2==pose3y) || ((posx)/pixeles==pose4x && (posy/pixeles)-2==pose4y) ||((posx)/pixeles==pose5x && (posy/pixeles)-2==pose5y) || ((posx)/pixeles==pose6x && (posy/pixeles)-2==pose6y)){
@@ -1140,7 +1157,9 @@ void MainWindow::morir()
         generar_enemigos();
         posx=60;
         posy=180;
+        contadorTIEMPO=180;
         bandmuerte=true;
+        ui->lcdNumber->display(contadorTIEMPO);
         if(vidas==0){
             bandmuerte=false;
             enemigo1->deleteLater();
@@ -1830,6 +1849,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    QTimer *cronometro=new QTimer(this);
+    connect(cronometro, SIGNAL(timeout()), this, SLOT(funcionActivacionTimer()));
+    cronometro->start(1000);
     movimientos[0]= ":/sprites/Sprites/frontal.png";
     movimientos[1]= ":/sprites/Sprites/frontpaso1.png";
     movimientos[2]= ":/sprites/Sprites/frontpaso2.png";

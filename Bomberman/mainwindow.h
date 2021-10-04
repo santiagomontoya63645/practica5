@@ -34,6 +34,7 @@ public slots:
     void muerte_enemigo4();
     void muerte_enemigo5();
     void muerte_enemigo6();
+    void funcionActivacionTimer();
 public:
     void keyPressEvent(QKeyEvent *i);
     void setup_mainwindow(); //Mostrar la pantalla como se desea
@@ -78,7 +79,7 @@ private:
     QString muerte[7];
     int matriz[columnas][filas];
     int posx=60,posy=180,posxb,posyb,pose1x,pose1y,pose2x,pose2y,pose3x,pose3y,pose4x,pose4y,pose5x,pose5y,pose6x,pose6y,vidas=3,contm=0,contmv=6;
-    int contd=3,contf=0,conti=6,contp=9,pasos=0,exp=0,cont1=3,cont2=3,cont3=3,cont4=3,cont5=3,cont6=3,mov=1,mov1=1,mov2=1,mov3=1,mov4=1,mov5=1,enemigos=6,puntos=0,level=1,levelant=1,puntosglob=0;
+    int contd=3,contf=0,conti=6,contp=9,pasos=0,exp=0,cont1=3,cont2=3,cont3=3,cont4=3,cont5=3,cont6=3,mov=1,mov1=1,mov2=1,mov3=1,mov4=1,mov5=1,enemigos=6,puntos=0,level=1,levelant=1,puntosglob=0, contadorTIEMPO = 180;
     bool r=false,l=false,u=false,d=false,bomb=false, bandmuerte=true; //Necesarios, sino se comprueba que se activó un extremo de la bomba y se elimina, el programa crashea
 };
 
