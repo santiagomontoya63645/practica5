@@ -532,6 +532,7 @@ void MainWindow::explotar()
         else if (matriz[(posxb+60)/pixeles][(posyb/pixeles)-2]==1){
             matriz[(posxb+60)/pixeles][(posyb/pixeles)-2]=0;
             mapa[(posxb+60)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[0]).scaled(60,60));
+            puntos=puntos+100;ui->label->setNum(puntos);
             if(((posxb)/pixeles==pose1x && (posyb/pixeles)-2==pose1y)){
                 pose1x=0;
                 pose1y=0;
@@ -987,6 +988,9 @@ void MainWindow::explotar()
             if(matriz[(posxb)/pixeles][((posyb+120)/pixeles)-2]==1){
                 matriz[(posxb)/pixeles][((posyb+120)/pixeles)-2]=0;
                 mapa[(posxb)/pixeles][((posyb+120)/pixeles)-2]->setPixmap(QPixmap(ladrillos[0]).scaled(60,60));
+                puntos=puntos+100;
+                ui->label->setNum(puntos);
+
             }
             d=true;
             if(((posxb)/pixeles==pose1x && (posyb/pixeles)-2==pose1y) || ((posxb)/pixeles==pose1x && ((posyb+60)/pixeles)-2==pose1y)){
@@ -1112,14 +1116,14 @@ void MainWindow::explotar()
             d=false;
             bombad->deleteLater();
         }
-        if(matriz[(posxb+120)/pixeles][(posyb/pixeles)-2]==0)mapa[(posxb+120)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));
-        if(matriz[(posxb+60)/pixeles][(posyb/pixeles)-2]==0) mapa[(posxb+60)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));
-        if(matriz[(posxb-70)/pixeles][(posyb/pixeles)-2]==0) mapa[(posxb-70)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));
-        if(matriz[(posxb-10)/pixeles][(posyb/pixeles)-2]==0) mapa[(posxb-10)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));
-        if(matriz[posxb/pixeles][((posyb-70)/pixeles)-2]==0) mapa[posxb/pixeles][((posyb-70)/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));
-        if(matriz[posxb/pixeles][((posyb-10)/pixeles)-2]==0) mapa[posxb/pixeles][((posyb-10)/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));
-        if(matriz[(posxb)/pixeles][((posyb+120)/pixeles)-2]==0) mapa[(posxb)/pixeles][((posyb+120)/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));
-        if(matriz[(posxb)/pixeles][((posyb+60)/pixeles)-2]==0) mapa[(posxb)/pixeles][((posyb+60)/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));
+        if(matriz[(posxb+120)/pixeles][(posyb/pixeles)-2]==0){mapa[(posxb+120)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));}//puntos=puntos+100;ui->label->setNum(puntos);}
+        if(matriz[(posxb+60)/pixeles][(posyb/pixeles)-2]==0){ mapa[(posxb+60)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));}//puntos=puntos+100;ui->label->setNum(puntos);}
+        if(matriz[(posxb-70)/pixeles][(posyb/pixeles)-2]==0) {mapa[(posxb-70)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));}//puntos=puntos+100;ui->label->setNum(puntos);}
+        if(matriz[(posxb-10)/pixeles][(posyb/pixeles)-2]==0) {mapa[(posxb-10)/pixeles][(posyb/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));}//puntos=puntos+100;ui->label->setNum(puntos);}
+        if(matriz[posxb/pixeles][((posyb-70)/pixeles)-2]==0) {mapa[posxb/pixeles][((posyb-70)/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));}//puntos=puntos+100;ui->label->setNum(puntos);}
+        if(matriz[posxb/pixeles][((posyb-10)/pixeles)-2]==0) {mapa[posxb/pixeles][((posyb-10)/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));}//puntos=puntos+100;ui->label->setNum(puntos);}
+        if(matriz[(posxb)/pixeles][((posyb+120)/pixeles)-2]==0){ mapa[(posxb)/pixeles][((posyb+120)/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));}//puntos=puntos+100;ui->label->setNum(puntos);}
+        if(matriz[(posxb)/pixeles][((posyb+60)/pixeles)-2]==0){ mapa[(posxb)/pixeles][((posyb+60)/pixeles)-2]->setPixmap(QPixmap(ladrillos[1]).scaled(60,60));}//puntos=puntos+100;ui->label->setNum(puntos);}
 
         matriz[posxb/pixeles][(posyb/pixeles)-2]=0;
         bomb=false;
